@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import "../Css/signup.css";
 import validator from 'validator';
 import logo from "../Images/logo.png";
+import {auth} from './Firebase';
 
 export const Signup = () => {
 
@@ -35,6 +36,14 @@ export const Signup = () => {
    else{
 
     // Firebasepart
+    auth.createUserWithEmailAndPassword(
+        b.current.value,
+        c.current.value
+      ).then(response=>{
+        console.log(response.user)
+      }).catch(err=>{
+        console.log(err)
+    })
     setsignupmessage("All fields are mandatory *");
     a.current.value="";
     b.current.value="";
